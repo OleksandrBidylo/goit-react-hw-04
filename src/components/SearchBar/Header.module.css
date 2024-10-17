@@ -1,0 +1,17 @@
+.wrapper {
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.form {
+  gap: 10px;
+  display: flex;
+
+  && input {
+    text-align: center;
+    width: 250px;
+    padding: 10px;
+  }
+}

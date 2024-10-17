@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  && button {
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    background-color: lightblue;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
