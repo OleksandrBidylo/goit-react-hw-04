@@ -2,13 +2,13 @@ import s from "./ImageGallery.module.css";
 
 import ImageCard from "../ImageCard/ImageCard";
 
-const ImageGallery = ({ photos }) => {
+const ImageGallery = ({ photos, openModal }) => {
   return (
     <div className={s.wrapper}>
       <ul>
         {photos.map((item) => (
           <li key={item.id}>
-            <ImageCard photo={item} />
+            <ImageCard photo={item} openModal={() => openModal(item)} />
           </li>
         ))}
       </ul>

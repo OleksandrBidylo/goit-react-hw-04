@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ErorrMessage from "./components/ErrorMessage/ErorrMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -15,6 +16,18 @@ function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  const openModal = (photo) => {
+    setSelectedPhoto(photo);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedPhoto(null);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -49,12 +62,21 @@ function App() {
     <div>
       <SearchBar setQuery={handleSetQuery} />
 
-      {!!photos.length && <ImageGallery photos={photos} />}
+      {!!photos.length && (
+        <ImageGallery photos={photos} openModal={openModal} />
+      )}
       {!!photos.length && photos.length < totalResults && (
         <LoadMoreBtn handleChangePage={handleChangePage} />
       )}
       {isLoading && <Loader />}
       {isError && <ErorrMessage />}
+      {selectedPhoto && (
+        <ImageModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          photo={selectedPhoto}
+        />
+      )}
     </div>
   );
 }

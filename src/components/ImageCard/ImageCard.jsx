@@ -1,12 +1,6 @@
-import { useState } from "react";
-import ImageModal from "../ImageModal/ImageModal";
 import s from "./ImageCard.module.css";
 
-const ImageCard = ({ photo }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const openModal = () => setModalIsOpen(true);
-  const closeModal = () => setModalIsOpen(false);
+const ImageCard = ({ photo, openModal }) => {
   return (
     <div>
       <img
@@ -15,13 +9,7 @@ const ImageCard = ({ photo }) => {
         alt={photo.alt_description}
         width="220"
         height="180"
-        onClick={openModal}
-      />
-
-      <ImageModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        photo={photo}
+        onClick={() => openModal(photo)}
       />
     </div>
   );
